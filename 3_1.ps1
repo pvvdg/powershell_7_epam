@@ -2,15 +2,10 @@
 # блокнота (предварительно на удаленном ПК запустить блокнот).
 
 Param(
-    [string]$Name
+    $Name
 )
-$user = "petrachukvv"
+$user = "PC"
+Set-Item WSMan:\localhost\Client\TrustedHosts -Value $Name
+Get-Item WSMan:\localhost\Client\TrustedHosts
 
-Set-Item WSMan:\localhost\Client\TrustedHosts -Value "$Name"
-
-$NamesArray = $Names.Split(",")
-
-foreach ($Name in $NamesArray) {
-    Enter-PSSession -ComputerName $Name -Credential $user
-
-}
+Invoke-Command -ComputerName $Name -Credential $user -ScriptBlock { Get-Process | Format-Table ; Get-Process 'notepad' | Stop-Process }
