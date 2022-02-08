@@ -18,8 +18,3 @@ $user = "petrachukvv"
 
 Set-Item WSMan:\localhost\Client\TrustedHosts -Value "$Name"
 Enter-PSSession -ComputerName $Name -Credential $user
-
-# $NamesArray = $Names.Split(",")
-
-# foreach ($Name in $NamesArray) {
-# }
